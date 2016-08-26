@@ -1,6 +1,6 @@
-import React,{Componet} from 'react';
+import React,{Component} from 'react';
 
-class Cropper extends Componet {
+export default class Cropper extends Component {
 	
 	finishCropImage(){
 		var thisObj  = this;
@@ -17,12 +17,12 @@ class Cropper extends Componet {
 	render(){
 		return (
 			<div>
-				<div class="o2_alert_mask" v-bind:class="{'show':imgHasLoad}" ></div>
-				<div class="o2_alert" v-bind:class="{'show':imgHasLoad}" >
-					<span class="o2_alert_close" v-on:click="imgHasLoad=false;"></span>
+				<div class="o2_alert_mask" className="{imgHasLoad ? 'show': ''}" ></div>
+				<div class="o2_alert" className="{imgHasLoad ? 'show': ''}" >
+					<span class="o2_alert_close" onClick="imgHasLoad=false;"></span>
 					<div class="cropper">
 						<div class="cropper_box" id="cropperBox">
-							<img src="http://fpoimg.com/200x200" style="width:100px;height:100px;" id="uploadPreview">
+							<img src="http://fpoimg.com/200x200" style="{width:100px;height:100px;}" id="uploadPreview">
 						</div>
 						<div class="cropper_res_wrap">
 							<div class="cropper_res" id="cropperRes">

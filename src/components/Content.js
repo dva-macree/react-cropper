@@ -1,8 +1,8 @@
-import React,{Componet} from 'react';
+import React,{Component} from 'react';
 import {toggleShowColorSetting,setImgHasLoad,setCropper,setCropperHasInit,setImg} from 'actions/cropper';
 
 
-class Content extends Componet {
+export default class Content extends Component {
 	isImage (type){
 		var filter = /^(?:image\/bmp|image\/cis\-cod|image\/gif|image\/ief|image\/jpeg|image\/jpeg|image\/jpeg|image\/pipeg|image\/png|image\/svg\+xml|image\/tiff|image\/x\-cmu\-raster|image\/x\-cmx|image\/x\-icon|image\/x\-portable\-anymap|image\/x\-portable\-bitmap|image\/x\-portable\-graymap|image\/x\-portable\-pixmap|image\/x\-rgb|image\/x\-xbitmap|image\/x\-xpixmap|image\/x\-xwindowdump)$/i;
 		return !!(filter.test(type));
@@ -115,8 +115,8 @@ class Content extends Componet {
 
 	render(){
 		<div>
-			    <div class="o2_content" >
-			<div class="o2_content_slider" v-bind:class="{'slide':flag.showColorSetting}">
+			<div class="o2_content" >
+			<div class="o2_content_slider" className="{flag.showColorSetting ? 'slide': ''}">
 				<!-- S input -->
 				<div class="o2_form">
 					<div class="o2_form_row o2_input_required">
@@ -131,7 +131,7 @@ class Content extends Componet {
 						<input type="text" class="o2_input_text"  name="c_name" placeholder="中文名" v-model="info.c_name" debounce="500">
 					</div>
 					<div class="o2_btns btn_download">
-						<a href="javascript:;" class="o2_btn bg1 " v-on:click="downloadRes()">生成头像</a>	
+						<a href="javascript:;" class="o2_btn bg1 " onClick="downloadRes()">生成头像</a>	
 					</div>
 				</div>
 				<div class="o2_form">
@@ -150,27 +150,27 @@ class Content extends Componet {
 						</div>
 					</div>
 					<div class="o2_btns">
-						<a href="javascript:;" class="o2_btn bg2" v-on:click="resetColors()">重置</a>
-						<a href="javascript:;" class="o2_btn bg1" v-on:click="flag.showColorSetting=false">保存并返回</a>
+						<a href="javascript:;" class="o2_btn bg2" onClick="resetColors()">重置</a>
+						<a href="javascript:;" class="o2_btn bg1" onClick="flag.showColorSetting=false">保存并返回</a>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="o2_alert_mask" v-bind:class="{'show':flag.imgHasLoad}" ></div>
-		<div class="o2_alert" v-bind:class="{'show':flag.imgHasLoad}" >
-			<span class="o2_alert_close" v-on:click="setImgHasLoad(false)"></span>
+		<div class="o2_alert_mask" className="{flag.imgHasLoad ? 'show':''}" ></div>
+		<div class="o2_alert" className="{flag.imgHasLoad ? 'show':''}" >
+			<span class="o2_alert_close" onClick="setImgHasLoad(false)"></span>
 			<div class="cropper">
 				<div class="cropper_box" id="cropperBox">
-					<img src="http://fpoimg.com/200x200" style="width:100px;height:100px;" id="uploadPreview">
+					<img src="http://fpoimg.com/200x200" style="{width:100px;height:100px;}" id="uploadPreview">
 				</div>
 				<div class="cropper_res_wrap">
 					<div class="cropper_res" id="cropperRes">
-						<img src="http://fpoimg.com/200x200" style="width:100px;height:100px;">
+						<img src="http://fpoimg.com/200x200" style="{width:100px;height:100px;}">
 					</div>
 				</div>
 			</div>
 			<div class="o2_btns cropper_btn">
-				<a href="javascript:;" class="o2_btn bg1" v-on:click="finishCropImage()">完成</a>
+				<a href="javascript:;" class="o2_btn bg1" onClick="finishCropImage()">完成</a>
 			</div>
 		</div>
 

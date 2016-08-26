@@ -1,12 +1,15 @@
-import React,{Componet} from 'react';
+import React,{Component,PropTypes} from 'react';
 
-class Main extends Componet {
+export default class Main extends Component {
 	
-
+	static propTypes: {
+	 	dispatch : PropTypes.func.isRequired    
+	}
 	render(){
+		const {dispatch}  = this.props;
 		return (
-		    <div class="o2_main" v-bind:class="{'show':flag.needLoadSign}" >
-				<span class="o2_main_close" v-on:click="toggleLoadSign()"></span>
+		    <div className="o2_main" className="{ flag.needLoadSign ? 'show': ''}" >
+				<span className="o2_main_close" onClick={() => dispatch(toggleLoadSign())}></span>
 		        <preview></preview>
 				<content></content>
 			</div>

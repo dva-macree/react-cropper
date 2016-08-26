@@ -56,7 +56,7 @@ export default (state = {
 			})
 			return newState;
 		case types.TOGGLE_FLAG_LOADSIGN : 
-			newState = Object.assigin({},state,{
+			newState = Object.assign({},state,{
 				flag : {
 					showColorSetting : !state.flag.showColorSetting
 				}
