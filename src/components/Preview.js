@@ -1,25 +1,40 @@
 import React,{Component} from 'react';
-
-export default class Preview extends Component {
+import { connect } from 'react-redux' // 引入connect 
+import {toggleShowColorSetting} from '../actions/cropper'
+class Preview extends Component {
 	render(){
-		<div class="o2_box">
-			<span class="o2_box_type">预览</span>
-			<span class="o2_color_setting" title="配色设置" onClick="flag.showColorSetting = !flag.showColorSetting">配色</span>
-			<div class="o2_sign" id="sign" :style="{ backgroundColor:style.co_bg }" >
-				<div class="logo">
-					<img alt="logo" onClick="flag.showColorSetting = !flag.showColorSetting">
+		const {toggleShowColorSetting} = this.props;
+		return (
+			<div className="o2_box">
+			<span className="o2_box_type">预览</span>
+			<span className="o2_color_setting" title="配色设置" onClick={() => (toggleShowColorSetting())}>配色</span>
+
+			<div className="o2_sign" id="sign" style={ {backgroundColor:this.props.state.style.co_bg } }>
+				<div className="logo">
+					<img alt="logo" onClick={() => (toggleShowColorSetting())}/>
 				</div>
-				<div class="img">
-					<img alt="头像">
+				<div className="img">
+					<img alt="头像"/>
 				</div>	
 				
-				<div class="info">
-					<div class="title" style="{ color:style.co_title }">
-						<p class="e_name" v-text="info.e_name? info.e_name : 'NAME'"></p>
-						<p class="c_name" v-text="info.c_name ? info.c_name:'姓名'"></p>
+				<div className="info">
+					<div className="title" style={{ color:this.props.state.style.co_title }}>
+						<p className="e_name"></p>
+						<p className="c_name"></p>
 					</div>
 				</div>
 			</div>
 		</div>
+
+			)
+		
 	}
 }
+
+const getState = state => {
+	return {
+		state : state.cropper
+	}
+}
+
+export default connect(getState,{toggleShowColorSetting})(Preview)

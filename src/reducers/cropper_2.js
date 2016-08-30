@@ -1,7 +1,15 @@
 import * as types from '../constants/ActionTypes';
 import {combinedReducers} from 'redux';
 
-const initialState = {
+
+
+// const app = (state,aciton){
+// 	switch(aciton.type){
+// 		case types.
+// 	}
+// }
+
+export default (state = {
 	info: {
             e_name: '',
             c_name: '',
@@ -36,9 +44,7 @@ const initialState = {
 
         }
 
-}
-
-export default (state = initialState ,action) => {
+},action) => {
 	// Obejct.assign() 方法，该方法用于产生新的对象
 	// 延展操作符 Spread operator : ...
 	// Immutable.js
@@ -46,16 +52,12 @@ export default (state = initialState ,action) => {
 	switch(action.type) {
 		case types.TOGGLE_FLAG_SHOWCOLORSETTING :
 			newState = Object.assign({},state,{
-				flag : {
-					...state.flag,
-					showColorSetting : !state.flag.showColorSetting
-				}
+
 			})
 			return newState;
 		case types.TOGGLE_FLAG_LOADSIGN : 
 			newState = Object.assign({},state,{
 				flag : {
-					...state.flag,
 					needLoadSign : !state.flag.needLoadSign
 				}
 			})
@@ -63,7 +65,6 @@ export default (state = initialState ,action) => {
 		case types.SET_BROWSERUNSUPPORT:
 			newState = Object.assign({},state,{
 				flag : {
-					...state.flag,
 					showBrowserUnsupport : !state.flag.showBrowserUnsupport
 				}
 			})
@@ -71,7 +72,6 @@ export default (state = initialState ,action) => {
 		case types.SET_IMGHASLOAD :
 			newState = Object.assign({},state,{
 				flag:{
-					...state.flag,
 					imgHasLoad : action.param
 				}
 			})
@@ -84,7 +84,6 @@ export default (state = initialState ,action) => {
 		case types.SET_CROPPERHASINIT :
 			newState = Object.assign({},state,{
 				flag :{
-					...state.flag,
 					cropperHasInit : action.param
 				}
 			})

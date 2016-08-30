@@ -4,22 +4,23 @@ import { connect } from 'react-redux';
 import Cover from './components/Cover';
 import Main from './components/Main';
 
-class App extends Component {
+export default class App extends Component {
 
-  static propTypes = {
-    dispatch: PropTypes.func.isRequired,
-  }
       render() {
         const { dispatch } = this.props;
         return (
           <div>
-            <Cover dispatch={dispatch} />
-            <Main dispatch={dispatch} />
+            <Cover />
+            <Main />
         </div>
         );
       }
 }
 
-const mapStateToProps = state => ({ ...state.cropper});
+// //Map Rudux state to component props
+// const mapStateToProps = state => ({ ...state.cropper});
 
-export default connect(mapStateToProps)(App);
+
+// //Map Redux actions to component props
+
+// export default connect(mapStateToProps)(App);
