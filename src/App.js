@@ -9,7 +9,7 @@ export default class App extends Component {
       render() {
         const { dispatch } = this.props;
         return (
-          <div>
+          <div className="mainContainer">
             <Cover />
             <Main />
         </div>

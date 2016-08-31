@@ -102,6 +102,14 @@ export default (state = initialState ,action) => {
 				}
 			})
 			return newState;
+		case types.SET_COLOR :
+			newState = Object.assign({},state,{
+				style : {
+					...state.style,
+					co_bg : action.param
+				}
+			})
+			return newState;
 		default : 
 			return state;
 	}

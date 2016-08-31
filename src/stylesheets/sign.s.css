@@ -1,9 +1,13 @@
 @charset "UTF-8";
-/**
- * @desc 凹凸实验室邮件签名
- * @author litingting6@jd.com
- * @date 20151123
- */
+
+.mainContainer{
+    color: #222;
+    margin: 0 auto;
+    max-width: 640px;
+}
+    
+
+
 .o2_sign .info .contact .item {
   font-family: arial; }
 
@@ -140,13 +144,13 @@ body {
 /* o2_cover
 ---------------------------------------- */
 .o2_cover {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: #fff url(../images/back.png) no-repeat center;
-  background-size: cover;
+  // position: fixed;
+  // top: 0;
+  // left: 0;
+  // right: 0;
+  // bottom: 0;
+  // background: #fff url(../images/back.png) no-repeat center;
+  // background-size: cover;
   color: #fff; }
   .o2_cover .o2_cover_hd {
     position: fixed;
@@ -175,18 +179,19 @@ body {
         .o2_cover .o2_cover_hd .lnks a:last-child {
           margin-right: 0; }
   .o2_cover .o2_cover_content {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 0 46px;
+    // position: absolute;
+    // top: 0;
+    // left: 0;
+    // right: 0;
+    // bottom: 0;
+    // padding: 0 46px;
+    text-align: center;
     background: rgba(0, 0, 0, 0.2); }
     .o2_cover .o2_cover_content .title {
-      position: absolute;
+      // position: absolute;
       top: 260px;
       left: 46px;
-      width: 460px; }
+   }
       .o2_cover .o2_cover_content .title h2 {
         position: relative;
         display: inline-block;
@@ -200,10 +205,10 @@ body {
         display: block;
         font-size: 20px; }
     .o2_cover .o2_cover_content .o2_cover_btn {
-      position: absolute;
+      // position: absolute;
       bottom: 0px;
       left: 46px;
-      display: block;
+      display: inline-block;
       width: 240px;
       height: 42px;
       line-height: 42px;

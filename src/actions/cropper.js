@@ -19,3 +19,5 @@ export const setCropperHasInit = param => ({type : types.SET_CROPPERHASINIT,para
 export const setImg = param => ({type : types.SET_IMG,param});
 
 export const setUsername = param => ({type : types.SET_USERNAME,param});
+
+export const setColor = param => ({type : types.SET_COLOR,param})

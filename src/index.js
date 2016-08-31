@@ -10,6 +10,7 @@ import App from './App';
 
 import './stylesheets/sign.s.css';
 import './stylesheets/cropper.min.css'
+// import './stylesheets/main.css';
 
 const rootEl = document.getElementById('app');
 const store = createStore(rootReducer, window.devToolsExtension && window.devToolsExtension());

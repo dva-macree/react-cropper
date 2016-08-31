@@ -68,7 +68,7 @@ module.exports = {
       filename:'index.html',
       // 文件名以及文件将要存放的位置
 
-      favicon:'./src/favicon.ico',
+      // favicon:'./src/favicon.ico',
       // favicon路径
 
       template:'./src/template.html',
@@ -112,7 +112,9 @@ module.exports = {
       {
         test: /\.css$/,
         loader: 'style-loader!css-loader',
-      }
+      },
+      { test: /\.(png|jpg)$/, loader : 'url-loader?limit=8192' },
+      { test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/, loader : 'file-loader' }
     ]
   }
 }

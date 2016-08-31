@@ -2,6 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="pragram" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache,must-revalidate">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title><%= htmlWebpackPlugin.options.title %></title>
   <!--
       描述：head中无需再引入css以及facicon，
@@ -9,7 +14,7 @@
   -->
 </head>
 <body>
-<div id="app"></div>
+<div id="app" ></div>
 <!--
     描述：body中同样无需单独引入JS文件，
     webpack会根据入口JS文件自动实现按需加载或者生成script标签，

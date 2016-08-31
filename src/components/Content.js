@@ -4,7 +4,7 @@ import cn from 'classnames';
 import Cropper from '../vendors/cropper.min.js'
 import domtoimage from '../vendors/dom-to-image.min.js'
 import saveAs from '../vendors/FileSaver.min.js'
-import {toggleShowColorSetting,setImgHasLoad,setCropper,setCropperHasInit,setImg,setUsername} from '../actions/cropper'
+import {toggleShowColorSetting,setImgHasLoad,setCropper,setCropperHasInit,setImg,setUsername,setColor} from '../actions/cropper'
 
 class Content extends Component {
 	static propTypes: {
@@ -124,12 +124,16 @@ class Content extends Component {
 		this.props.setUsername(event.target.value);
 	}
 
+	handleColorPanel(event){
+		this.props.setColor(event.target.value);
+	}
+
 	componentDidMount() {
 		this.bindLoadImgEvent();
 	}
 
 	render(){
-		const {dispatch,toggleShowColorSetting,setImgHasLoad,setCropper,setCropperHasInit,setImg,setUsername} = this.props;
+		const {dispatch,toggleShowColorSetting,setImgHasLoad,setCropper,setCropperHasInit,setImg,setUsername,setColor} = this.props;
 		const showColorSettingClass = cn('o2_content_slider',{
 			slide : this.props.cropper.flag.showColorSetting
 		})
@@ -156,7 +160,7 @@ class Content extends Component {
 						</div>
 						<div className="o2_form_row">
 							<label  className="o2_label">中文名</label>
-							<input type="text" className="o2_input_text" onClick={e => this.handleChange(e)}  name="c_name" placeholder="中文名"></input>
+							<input type="text" className="o2_input_text" onChange={e => this.handleChange(e)}  name="c_name" placeholder="中文名"></input>
 						</div>
 						<div className="o2_btns btn_download">
 							<a href="javascript:;" className="o2_btn bg1 " onClick={() => (this.downloadRes())}>生成头像</a>	
@@ -173,8 +177,8 @@ class Content extends Component {
 						<div className="o2_form_row">
 							<label  className="o2_label">面板底色</label>
 							<div className="o2_input_color">
-								<input type="color"></input>
-								<input type="text" className="o2_input_text"></input>
+								<input type="color" onChange={e => this.handleColorPanel(e)}></input>
+								<input type="text" className="o2_input_text" onChange={e => this.handleColorPanel(e)}></input>
 							</div>
 						</div>
 						<div className="o2_btns">
@@ -214,4 +218,4 @@ const getCropper = state => {
 	}
 }
 
-export default connect(getCropper,{toggleShowColorSetting,setImgHasLoad,setCropper,setCropperHasInit,setImg,setUsername} )(Content)
+export default connect(getCropper,{toggleShowColorSetting,setImgHasLoad,setCropper,setCropperHasInit,setImg,setUsername,setColor} )(Content)
