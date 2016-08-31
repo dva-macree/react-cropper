@@ -4,6 +4,7 @@ import {toggleShowColorSetting} from '../actions/cropper'
 class Preview extends Component {
 	render(){
 		const {toggleShowColorSetting} = this.props;
+		const c_name = this.props.state.info.c_name;
 		return (
 			<div className="o2_box">
 			<span className="o2_box_type">预览</span>
@@ -20,7 +21,7 @@ class Preview extends Component {
 				<div className="info">
 					<div className="title" style={{ color:this.props.state.style.co_title }}>
 						<p className="e_name"></p>
-						<p className="c_name"></p>
+						<p className="c_name">{c_name}</p>
 					</div>
 				</div>
 			</div>

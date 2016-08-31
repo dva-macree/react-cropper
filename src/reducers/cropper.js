@@ -94,6 +94,14 @@ export default (state = initialState ,action) => {
 				img : action.param
 			})
 			return newState;
+		case types.SET_USERNAME :
+			newState = Object.assign({},state,{
+				info : {
+					...state.info,
+					c_name : action.param
+				}
+			})
+			return newState;
 		default : 
 			return state;
 	}

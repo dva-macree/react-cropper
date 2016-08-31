@@ -4,7 +4,7 @@ import cn from 'classnames';
 import Cropper from '../vendors/cropper.min.js'
 import domtoimage from '../vendors/dom-to-image.min.js'
 import saveAs from '../vendors/FileSaver.min.js'
-import {toggleShowColorSetting,setImgHasLoad,setCropper,setCropperHasInit,setImg} from '../actions/cropper'
+import {toggleShowColorSetting,setImgHasLoad,setCropper,setCropperHasInit,setImg,setUsername} from '../actions/cropper'
 
 class Content extends Component {
 	static propTypes: {
@@ -18,7 +18,7 @@ class Content extends Component {
 
 	bindLoadImgEvent(){
 		var thisObj = this;
-        if(!this.helper.support)
+        if(!this.props.cropper.helper.support)
             return ;
         var uploadPreview = document.getElementById('uploadPreview');
         var uploadImages = document.querySelectorAll('.J_uploadImage');
@@ -37,21 +37,21 @@ class Content extends Component {
                 }
                 reader.readAsDataURL(file);
                 blobURL = URL.createObjectURL(file);
-                if(thisObj.cropper){
-                    thisObj.cropper.reset();   
+                if(thisObj.props.cropper.cropper){
+                    thisObj.props.cropper.cropper.reset();   
                 }
-                thisObj.setImgHasLoad(true);
-                thisObj.setImg(this.dataset.dest);
+                thisObj.props.setImgHasLoad(true);
+                thisObj.props.setImg(this.dataset.dest);
             })   
         }
         
         reader.onload = function(e) {
             uploadPreview.src = e.target.result;
-            if (!thisObj.flag.cropperHasInit) {
+            if (!thisObj.props.cropper.flag.cropperHasInit) {
                 thisObj.loadCropper();
                 return;
             }
-            thisObj.cropper.replace(blobURL);
+            thisObj.props.cropper.cropper.replace(blobURL);
         }
 	}
 
@@ -82,14 +82,14 @@ class Content extends Component {
                 }
             };
 //            thisObj.cropper = new Cropper(image,option);
-            this.setCropper(new Cropper(image,option));
+            this.props.setCropper(new Cropper(image,option));
 //            thisObj.flag.cropperHasInit = true;
-            this.setCropperHasInit(true);
+            this.props.setCropperHasInit(true);
 	}
 
 	resetColors(){
 		var thisObj = this;
-        var croppedCanvas = thisObj.cropper.getCroppedCanvas({
+        var croppedCanvas = thisObj.props.cropper.cropper.getCroppedCanvas({
             width: 200,
             height: 200
         });
@@ -101,14 +101,14 @@ class Content extends Component {
 
 	finishCropImage(){
 		var thisObj = this;
-        var croppedCanvas = thisObj.cropper.getCroppedCanvas({
+        var croppedCanvas = thisObj.props.cropper.cropper.getCroppedCanvas({
             width: 200,
             height: 200
         });
         var imgDataUrl = croppedCanvas.toDataURL();
-        var where = '.o2_sign .' + thisObj.img + ' img';
+        var where = '.o2_sign .' + thisObj.props.cropper.img + ' img';
         document.querySelector(where).src = imgDataUrl;
-        thisObj.setImgHasLoad(false);
+        thisObj.props.setImgHasLoad(false);
 	}
 
 	downloadRes(){
@@ -120,8 +120,16 @@ class Content extends Component {
 	    });
 	}
 
+	handleChange(event){
+		this.props.setUsername(event.target.value);
+	}
+
+	componentDidMount() {
+		this.bindLoadImgEvent();
+	}
+
 	render(){
-		const {dispatch,toggleShowColorSetting,setImgHasLoad,setCropper,setCropperHasInit,setImg} = this.props;
+		const {dispatch,toggleShowColorSetting,setImgHasLoad,setCropper,setCropperHasInit,setImg,setUsername} = this.props;
 		const showColorSettingClass = cn('o2_content_slider',{
 			slide : this.props.cropper.flag.showColorSetting
 		})
@@ -148,10 +156,10 @@ class Content extends Component {
 						</div>
 						<div className="o2_form_row">
 							<label  className="o2_label">中文名</label>
-							<input type="text" className="o2_input_text"  name="c_name" placeholder="中文名"></input>
+							<input type="text" className="o2_input_text" onClick={e => this.handleChange(e)}  name="c_name" placeholder="中文名"></input>
 						</div>
 						<div className="o2_btns btn_download">
-							<a href="javascript:;" className="o2_btn bg1 " onClick={() => (downloadRes())}>生成头像</a>	
+							<a href="javascript:;" className="o2_btn bg1 " onClick={() => (this.downloadRes())}>生成头像</a>	
 						</div>
 					</div>
 					<div className="o2_form">
@@ -190,7 +198,7 @@ class Content extends Component {
 					</div>
 				</div>
 				<div className="o2_btns cropper_btn">
-					<a href="javascript:;" className="o2_btn bg1" onClick={() => (finishCropImage())}>完成</a>
+					<a href="javascript:;" className="o2_btn bg1" onClick={() => (this.finishCropImage())}>完成</a>
 				</div>
 			</div>
 		</div>
@@ -206,4 +214,4 @@ const getCropper = state => {
 	}
 }
 
-export default connect(getCropper,{toggleShowColorSetting,setImgHasLoad,setCropper,setCropperHasInit,setImg} )(Content)
+export default connect(getCropper,{toggleShowColorSetting,setImgHasLoad,setCropper,setCropperHasInit,setImg,setUsername} )(Content)

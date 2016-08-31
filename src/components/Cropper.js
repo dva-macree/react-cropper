@@ -43,9 +43,7 @@ class Cropper extends Component {
 
 			</div>
 		)
-
 	}
-
 }
 
 const getCropper = state => {
