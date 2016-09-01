@@ -1,8 +1,8 @@
 import React, { Component,PropTypes } from 'react';
 
 import { connect } from 'react-redux';
-import Cover from './components/Cover';
-import Main from './components/Main';
+import Cover from './containers/Cover';
+import Main from './containers/Main';
 
 export default class App extends Component {
 

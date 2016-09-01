@@ -7,3 +7,4 @@ export const SET_CROPPERHASINIT = 'SET_CROPPERHASINIT';
 export const SET_IMG = 'SET_IMG';
 export const SET_USERNAME = 'SET_USERNAME';
 export const SET_COLOR = 'SET_COLOR';
+export const GET_SUCCESS = 'GET_SUCCESS';

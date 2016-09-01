@@ -11,7 +11,8 @@ const initialState = {
                 wechat: '',
                 call: '',
                 mobile: ''
-            }
+            },
+            lists: []
         },
         style: {
             logo: '',
@@ -35,7 +36,6 @@ const initialState = {
             support: !!(window.FileReader && window.CanvasRenderingContext2D && (window.URL || window.webkitURL)),
 
         }
-
 }
 
 export default (state = initialState ,action) => {
@@ -108,6 +108,14 @@ export default (state = initialState ,action) => {
 					...state.style,
 					co_bg : action.param
 				}
+			})
+			return newState;
+		case types.GET_SUCCESS :
+			newState = Object.assign({},state,{
+				info :{
+					...state.info,
+					lists : action.json
+				} 
 			})
 			return newState;
 		default : 
